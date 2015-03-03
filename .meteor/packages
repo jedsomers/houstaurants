@@ -5,8 +5,14 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 twbs:bootstrap
 underscore
 iron:router
 sacha:spin
+email
+ian:accounts-ui-bootstrap-3
+accounts-password
+alanning:roles
+pahans:reactive-modal
+mizzao:bootboxjs
+aslagle:reactive-table
