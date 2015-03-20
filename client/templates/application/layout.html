@@ -1,8 +1,44 @@
 <template name="layout">
+	<script>
+	/* affix the navbar after scroll below header */
+	$('#nav').affix({
+	      offset: {
+	        top: $('header').height()-$('#nav').height()
+	      }
+	});	
+
+	/* highlight the top nav as scrolling occurs */
+	$('body').scrollspy({ target: '#nav' })
+
+	/* smooth scrolling for scroll to top */
+	$('.scroll-top').click(function(){
+	  $('body,html').animate({scrollTop:0},1000);
+	})
+
+	/* smooth scrolling for nav sections */
+	$('#nav .navbar-nav li>a').click(function(){
+	  var link = $(this).attr('href');
+	  var posi = $(link).offset().top;
+	  $('body,html').animate({scrollTop:posi},700);
+	});
+
+
+	</script>
+	
+	<div id="wrap">
+		<header class="masthead">
+			<h1 class="text-center">
+				<a href="#section1" class="btn-default2" data-uk-smooth-scroll>
+				  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+				</a>
+			</h1>
+		</header>
 	<div class="container">
 		{{> header}}
+			<div class="divider" id="section1"></div>
 		<div id="main">
-			{{> yield}}
+		{{> yield}}
 		</div>
 	</div>
+</div>
 </template>

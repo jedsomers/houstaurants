@@ -2,12 +2,14 @@ Template.modalIntro.events({
 	'submit email': function(e) {
 		e.preventDefault();
 		
-		var useremail = e.username.value;
-		var restemail = e.restname.value;
+		var email = {
+			useremail: $(e.target).find('[name=useremail]').val(),
+			restemail: $(e.target).find('[name=restemail]').val()
+		};
 		
-		Emails.insert({
-			useremail: useremail,
-			resetemail: restemail
+		Meteor.call('emailInsert', email, function(error, result) {
+			if (error)
+				return alert(error.reason);
 		});
 	}
 });
@@ -20,3 +22,5 @@ Template.modalIntro.helpers({
 	}
 	
 });
+
+

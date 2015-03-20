@@ -8,3 +8,11 @@ if (Rests.find().count() === 0) {
 	  
 	
 }
+
+if (Emails.find().count() === 0) {
+	Emails.insert({
+		useremail: 'somersjed@gmail.com',
+		restemail: 'jedsomers@comcast.net'
+	});
+	
+}

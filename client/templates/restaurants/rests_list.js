@@ -16,14 +16,41 @@ Template.restsList.helpers({
 			{ key: 'fbLikes', label: 'Facebook Likes' },
 			{ key: 'urb', label: 'UrbanSpoon Rating (%)' },
 			{ key: 'zagatPrice', label: 'Zagat Price ($)' },
-			{ key: 'zagatFood', label: 'Zagat Food' },
-			{ key: 'zagatDecor', label: 'Zagat Decor' },
-			{ key: 'zagatService', label: 'Zagat Service' }
+			{ key: 'zagatFood', label: 'Zagat Food (/30)' },
+			{ key: 'zagatDecor', label: 'Zagat Decor (/30)' },
+			{ key: 'zagatService', label: 'Zagat Service (/30)' }
 			];
 	}
 	
 
 });
+
+Meteor.startup (
+	function() {
+	bootbox.dialog({
+	        message: " ", // bootbox doesn't accept an empty value
+		 title: "The absolute best resource on Houston Restaurants. Period.",
+	        buttons: {
+	            success: {
+	                label: "Thanks!",
+	                className: "btn-success",
+	                callback: function () {
+						
+						Meteor.call('emailInsert', $(email).val(), function(error, result) {
+							if (error)
+								return alert(error.reason);
+							
+						});
+					}
+	                    // do something
+
+	                }
+	            }
+	    });
+
+	// Inject your template inside the dialog box
+	Blaze.render(Template.modalIntro, $('.bootbox-body')[0]);
+	});
 
 
 		
